@@ -65,8 +65,16 @@ def get_melon_price(melon_name):
         >>> get_melon_price('Tomato')
         'No price found'
     """
+    
+    melon_price_list = {'Watermelon': 2.95, 
+    'Cantaloupe': 2.50,
+    'Musk': 3.25,
+    'Christmas': 14.25
+    }
 
-    return 0
+    price = melon_price_list.get(melon_name, 'No price found')
+
+    return price
 
 
 def word_length_sorted(words):
@@ -87,6 +95,11 @@ def word_length_sorted(words):
         >>> word_length_sorted(["porcupine", "ok"])
         [(2, ['ok']), (9, ['porcupine'])]
     """
+
+    # to get a list of tuples, use dictionary.items()
+    # key: the length of the words. value: words with said length
+    # sort by length? 
+
 
     return []
 
@@ -130,7 +143,33 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    translator_words = {"sir": "matey", 
+    "hotel": "fleabag inn",
+    "student": "swabbie",
+    "man": "matey",
+    "professor": "foul blaggart", 
+    "restaurant": "galley", 
+    "your": "yer", 
+    "excuse": "arr",
+    "students": "swabbies",
+    "are": "be",
+    "restroom": "head",
+    "my": "me",
+    "is": "be"}
+
+    # for each word in the phrase, I have to look into the dictionary 
+    # to check if the word is there. If it is, replace the word in the phrase
+    # with the dictionary value in that key. Otherwise, keep going. 
+    # I have to give the statement, the index on the phrase, so I can 
+    # replace it. 
+
+    phrase = phrase.split()
+    string_from_phrase = " "
+    for index, word in enumerate(phrase): 
+        if word in translator_words.keys(): 
+            phrase[index] = translator_words[phrase[index]]
+    
+    return " ".join(phrase)
 
 
 def kids_game(names):
