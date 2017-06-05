@@ -100,8 +100,24 @@ def word_length_sorted(words):
     # key: the length of the words. value: words with said length
     # sort by length? 
 
+    words_length = {}
 
-    return []
+    for item in words: 
+
+        key = len(item)
+        value = item
+
+        if key not in words_length.keys():
+            words_length[key] = [value]
+
+        else: 
+            words_length[key].append(value)
+
+    for key, value in words_length.items():
+        words_length[key] = sorted(value)
+
+
+    return sorted(words_length.items())
 
 
 def translate_to_pirate_talk(phrase):
@@ -218,7 +234,34 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    results = [names[0]]
+    dictionary_first_letters = {}
+    
+    for item in names[1:]: 
+        if item[0] not in dictionary_first_letters.keys():
+            dictionary_first_letters[item[0]] = [item]
+
+        else: 
+            dictionary_first_letters[item[0]].append(item)
+
+    
+    current_item = names[0] #current item from the names list
+                            #index of current_item is a letter in the string
+
+    while current_item[-1] in dictionary_first_letters.keys():
+        key = current_item[-1]
+        word_list = dictionary_first_letters[key]
+
+        if len(word_list) == 0:
+            break
+
+        next_item = word_list[0]
+
+        results.append(next_item)
+        word_list.remove(word_list[0])
+        current_item = next_item
+
+    return results
 
 #####################################################################
 # You can ignore everything below this.
